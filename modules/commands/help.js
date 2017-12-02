@@ -3,7 +3,7 @@
     try {
         if (!args[0]) {
             let categories = [];
-            let ver = " alpha"
+            let ver = "0.0.1"
             let embed = new Discord.RichEmbed()
             let helpString = "";
             let commands = Array.from(client.commands.keys());

@@ -1,18 +1,18 @@
 ﻿/****************************************
  *
  *   LionBot: (Basically Half-Baked) Moderation bot, with a few fun commands.
- *   written by ServerLion
+ *   written by ServerLion#1789
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the MIT License.
  *
  *  FloppyDiskDrive wrote the handler and helped me fix my derps. (Thanks again! c:)
- *  Jtsshieh wrote the help command
+ *  Jtsshieh wrote the help command and liscense file
  *
  *
  * *************************************/
 
-var ver = " alpha";
+var ver = "0.0.1";
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
@@ -21,11 +21,10 @@ const config = require("./config.json")
 var prefix = 'lion.'
 var vicCount = 0;
 var sameMsg = {};
-
+//Let's login to our bot account!
 var token = config.token
-
 client.login('UmExcuseMeThatIsPrivate')
-
+//Set the game
 client.on('ready', () => {
     console.log("[i] LionBot " + ver + " is now ready to go!");
     function gameRandomizer() {
@@ -35,7 +34,7 @@ client.on('ready', () => {
     }
     var gameChooser = setInterval(gameRandomizer, 30000);
 });
-
+//Check for Mod Permissions
 var modCommand;
 
 function hasPermissions(perm) {
@@ -45,7 +44,7 @@ function hasPermissions(perm) {
         return false;
     }
 }
-
+//Command Stuff
 fs.readdir("./modules/commands/${f}", (err, files) => {
     if (err) console.error(err);
 
@@ -69,7 +68,7 @@ fs.readdir("./modules/commands/${f}", (err, files) => {
     console.log(`Finshed loading all ${modules.length} commands.`)
 })
 
-
+//Errors and Responses
 client.on("message", message => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
@@ -121,7 +120,7 @@ client.on("message", message => {
     }
 
 });
-
+//Error
 process.on('unhandledRejection', function (err, p) {
     console.log("[X] " + err.stack);
 });
