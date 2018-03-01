@@ -1,0 +1,19 @@
+const db = require('quick.db')
+let args = message.content.substring(prefix.length).split(" ");
+
+if(args[0] === 'setMessagelog)
+{
+
+    
+    if (!!message.member.hasPermission('ADMINISTRATOR')) return message.reply('This command requires the Permission Administrator role')
+    if (!message.mentions.channels.first() && args.join(" ").toUpperCase() !== 'NONE') return message.reply('Please mention a channel\n*lion.setMessagelog #channel*') 
+
+    // Fetch the new channel they mentioned
+    let newChannel;
+    if (args.join(" ").toUpperCase() === 'NONE') newChannel = ''; 
+    else newChannel = message.mentions.channels.first().id; 
+
+    
+    db.updateText(`messageChannel_${message.guild.id}`, newChannel).then(i => {
+        message.reply(`Successfully updated logging channel to ${message.mentions.channels.first()}`)
+        }
