@@ -160,20 +160,10 @@ try{
   .setDescription(`Message by ${Message.author.username} was deleted in ${Message.channel}`)
   .addField(`Deleted Message`, '```'+(Message.content)+'```')
   .setFooter(`Deleted Message by ${Message.author.username} on ${new Date()}`, Message.author.avatarURL)
-  if (Message.guild.id == "336487228228370432") {
-     client.channels.get("398333160452128778").send({ embed });
-  }
-  else if (Message.guild.id == "264445053596991498") {
-    client.channels.get("265156361791209475").send({ embed });
-
-  }
-  else if (Message.guild.id == "356165218625388554") {
-    client.channels.get("409170359804231680").send({ embed });
-
-  }
-  else{
-          Message.guild.channels.find(c => c.name == 'logs').send({ embed });
-
+ db.fetchObject(`messageChannel_${member.guild.id}`).then(i => {
+ if (!member.guild.channels.get(i.text)) return;
+else message.channel.send(member.guild.channels.get(i.text), member).replace('{members}', member.guild.memberCount))
+ }
 }
 }
 catch (error){
